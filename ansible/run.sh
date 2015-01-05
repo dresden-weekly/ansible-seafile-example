@@ -2,5 +2,4 @@
 
 #ANSIBLE_OPTIONS=-vvvv
 
-source $VAGRANT_ANSIBLE_REMOTE/ansible/run-args.sh
-source $VAGRANT_ANSIBLE_REMOTE/ansible/run.sh
+source "$PROJECT_FOLDER/$VAGRANT_ANSIBLE_REMOTE/ansible/run.sh"

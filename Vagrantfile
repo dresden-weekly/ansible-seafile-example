@@ -16,12 +16,15 @@ Vagrant.configure('2') do |config|
 
   config.vm.define "seafile-vm" do |seafile|
     seafile.vm.hostname = "seafile-vm"
+
+    # forwarded ports
     seafile.vm.network "forwarded_port", guest: 80, host: 8080 # http
     seafile.vm.network "forwarded_port", guest: 443, host: 4443 # https
     seafile.vm.network "forwarded_port", guest: 10001, host: 10001 # Ccnet Daemon
     seafile.vm.network "forwarded_port", guest: 12001, host: 12001 # Seafile Daemon
 
-    seafile.vm.synced_folder ".", "/vagrant", disabled: true # disable shared folder
+    # disable shared folder
+    seafile.vm.synced_folder ".", "/vagrant", disabled: true
 
     # make machine faster
     seafile.vm.provider "virtualbox" do |v|
