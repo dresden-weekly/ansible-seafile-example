@@ -1,0 +1,5 @@
+[vagrant]
+seafile-vm
+
+[seafile:children]
+vagrant
