@@ -1,4 +1,5 @@
 - hosts:        seafile
+  sudo: yes
   # pre_tasks:
   # - name:       provision ssl dir
   #   file:

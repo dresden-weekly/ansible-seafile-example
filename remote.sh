@@ -1,43 +1,16 @@
-#!/bin/sh
-if [ ! -z "$1" ] ; then
-  if [ -s "ansible/groups/$1.yml" ]; then
-    export PROVISION_GROUPS=$1
-    PROVISION_VAGRANT=true
-    echo Groups: $1
-    shift
-  elif [ -s "ansible/hosts/$1" ] ; then
-    export PROVISION_TARGET=$1
-    echo Target: $1
-    shift
-  fi
-fi
+#!/bin/bash
+# This script should be placed in the root of your project
 
-if [ ! -z "$1" ] ; then
-  if [ -s "ansible/$1.yml" ] ; then
-    export PROVISION_ACTION=$1
-    echo Action: $1
-    shift
-  fi
-fi
+#   Absolute path of the project
+PROJECT_FOLDER=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-if [ ! -z "$1" ] ; then
-  export PROVISION_ARGS=$@
-  echo Arguments: $@
-fi
+#   Relative path of vagrant-ansible-remote to the project
+VAGRANT_ANSIBLE_REMOTE=vagrant-ansible-remote
 
-export ANSIBLE_DIR=${ANSIBLE_DIR:=`pwd`/.ansible}
-if [ "true" = "$PROVISION_VAGRANT" -o "vagrant" = "${PROVISION_TARGET:=vagrant}" ] ; then
-  mkdir -p $ANSIBLE_DIR
-  PATH=$ANSIBLE_DIR:$PATH
-  export PATH
-  echo vagrant provision
-  exec vagrant provision
-else
-  echo running ansible
-  # export ANSIBLE_HOST_KEY_CHECKING=False
-  # export PYTHONUNBUFFERED=1
-  # export ANSIBLE_FORCE_COLOR=1
-  export BASE_FOLDER=${BASE_FOLDER:=`pwd`/ansible}
-  export RUN_ANSIBLE=true
-  exec $BASE_FOLDER/run.sh $PROVISION_TARGET ${PROVISION_ACTION:=provision}
-fi
+#   Vagrant name of the machine with Ansible
+VAGRANT_ANSIBLE_MACHINE=${VAGRANT_ANSIBLE_MACHINE:=ansible-vm}
+
+#   default relative hosts file, overriden by parameters
+ANSIBLE_HOSTS_NAME=${ANSIBLE_HOSTS_NAME:=seafile-vm}
+
+source "$PROJECT_FOLDER/$VAGRANT_ANSIBLE_REMOTE/remote.sh"
