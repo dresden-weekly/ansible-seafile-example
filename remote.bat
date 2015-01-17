@@ -13,14 +13,6 @@ if not defined VAGRANT_ANSIBLE_MACHINE (
   set "VAGRANT_ANSIBLE_MACHINE=ansible-vm"
 )
 
-::   default relative hosts file, overriden by parameters
-::if not defined ANSIBLE_ENV (
-::  set "ANSIBLE_ENV=ANSIBLE_HOSTS_NAME=seafile-vm"
-::)
-::if "%ANSIBLE_ENV:ANSIBLE_HOSTS_NAME=%." == "%ANSIBLE_ENV%." (
-::  set "ANSIBLE_ENV=ANSIBLE_HOSTS_NAME=seafile-vm %ANSIBLE_ENV%"
-::)
-
 call "%VAGRANT_ANSIBLE_REMOTE%/remote.bat" %*
 
 ENDLOCAL
