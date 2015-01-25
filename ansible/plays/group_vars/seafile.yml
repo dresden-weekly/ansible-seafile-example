@@ -44,6 +44,7 @@ seafile_db_pass: secret
 
 #nginx configuration
 #
+keep_only_specified: yes
 nginx_max_clients:          128
 nginx_http_params:
   - sendfile                 "on"

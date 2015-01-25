@@ -1,0 +1,17 @@
+---
+- src: "bennojoy.mysql"
+
+- src: "jdauphant.nginx"
+  version: "1.1.2"
+
+# stable version from Ansible Galaxy
+# - src: "dresden-weekly.seafile"
+#   version: "4.1"
+
+# development version from Github
+- src: "https://github.com/dresden-weekly/ansible-seafile"
+  version: develop
+  name: dresden-weekly.seafile
+
+
+

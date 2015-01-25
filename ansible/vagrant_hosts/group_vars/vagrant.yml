@@ -1,0 +1,1 @@
+seafile_ip_or_domain: "{{ ansible_all_ipv4_addresses | last }}"
