@@ -2,7 +2,7 @@
 - src: "bennojoy.mysql"
 
 - src: "jdauphant.nginx"
-  version: "1.1.2"
+  version: "v1.1.2"
 
 # stable version from Ansible Galaxy
 # - src: "dresden-weekly.seafile"
